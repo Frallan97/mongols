@@ -1,6 +1,14 @@
 import { useMemo } from 'react';
-import { GRATICULE_PATH, HEIGHT, LAND_PATH, WIDTH, project, ringsToPath } from '../lib/geo';
+import {
+  GRATICULE_PATH,
+  HEIGHT,
+  LAND_PATH,
+  WIDTH,
+  project,
+  ringsToPath,
+} from '../lib/geo';
 import { SNAPSHOTS, snapshotForYear } from '../data/territory';
+import { useCountryBorders } from '../lib/useCountryBorders';
 import type { Realm } from '../data/types';
 
 const REALM_FILL: Record<Realm, string> = {
@@ -50,9 +58,14 @@ const CITIES: { name: string; lon: number; lat: number; dx?: number; dy?: number
 
 interface Props {
   year: number;
+  /** Draw present-day international borders over the historical map. */
+  showModernBorders: boolean;
 }
 
-export function MapView({ year }: Props) {
+export function MapView({ year, showModernBorders }: Props) {
+  // Null until the chunk arrives; the overlay simply isn't drawn until then.
+  const bordersPath = useCountryBorders(showModernBorders);
+
   /**
    * Every snapshot's shapes are rendered once and held in the DOM; only
    * opacity changes with the year. That is what makes the cross-fade free —
@@ -101,7 +114,10 @@ export function MapView({ year }: Props) {
       viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
       className="h-full w-full"
       role="img"
-      aria-label={`Approximate extent of the Mongol empire in ${year}`}
+      aria-label={
+        `Approximate extent of the Mongol empire in ${year}` +
+        (showModernBorders ? ', with present-day country borders overlaid' : '')
+      }
     >
       <defs>
         {/*
@@ -145,6 +161,26 @@ export function MapView({ year }: Props) {
           )),
         )}
       </g>
+
+      {/*
+        Modern borders sit above the territory fills — under them they would
+        be invisible exactly where someone wants them, inside the empire —
+        but below the coastline and the labels, which still have to read as
+        the primary map. Dashed rather than solid so they are legible as a
+        separate, anachronistic layer rather than as 13th-century frontiers.
+      */}
+      {bordersPath && (
+        <path
+          d={bordersPath}
+          fill="none"
+          stroke="var(--color-ink)"
+          strokeWidth={0.65}
+          strokeDasharray="3 2.5"
+          className="map-fade"
+          opacity={showModernBorders ? 0.5 : 0}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Coastline drawn over the fills so the land edge stays legible. */}
       <path

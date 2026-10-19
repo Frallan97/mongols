@@ -12,13 +12,17 @@ Live at <https://mongols.vibeoholic.com>.
 - **Four khanates after 1260.** Before the split the leader panel shows one
   Great Khan; after it, all four concurrent rulers, colour-matched to the map.
 - **~35 turning points**, one sentence each, pinned to the year they happened.
+- **Modern borders toggle.** Dashed present-day country borders can be laid
+  over the historical map for orientation. Off by default and loaded on
+  demand, so it costs nothing until you use it.
 - **Every claim is sourced.** Each ruler and each event links to its own
   article; the standard scholarship behind the dates is credited under
   *Sources* at the foot of the page.
 - **No backend.** Four hand-authored TypeScript datasets and a bundled
   coastline. Nothing is fetched at runtime.
 
-Deep-link to a year with the URL fragment: `/#y=1241`.
+Deep-link to a year with the URL fragment: `/#y=1241`, and carry the overlay
+state with it: `/#y=1279&modern=1`.
 
 ## The honest caveat
 
@@ -76,6 +80,7 @@ malformed URL can't ship either way.
 | Map | `d3-geo` + inline SVG — no tile server, no API key, works offline |
 | Projection | Lambert azimuthal equal-area centred on Central Asia |
 | Basemap | Natural Earth 50m land via `world-atlas`, bundled |
+| Borders overlay | Natural Earth 110m countries, lazy-loaded as its own chunk |
 | Styling | Tailwind v4 |
 | Tests | Vitest |
 | Serving | nginx on Alpine |
@@ -84,6 +89,19 @@ No map library. Leaflet and MapLibre are built for present-day web-mercator
 tiles and fight you when the geometry is hand-authored and historical; with
 `d3-geo` the projection is yours and territories are just `<path>` elements
 that CSS can cross-fade.
+
+### Weight
+
+The main bundle is ~270KB gzipped, nearly all of it the 50m coastline. The
+modern-borders overlay is a dynamic `import()` that Vite emits as a separate
+~40KB chunk, fetched the first time the toggle is switched on — so a visitor
+who never touches it never pays for it.
+
+That overlay uses the **110m** topology while the coastline uses 50m. At 50m
+the chunk is 243KB gzipped and visibly hitches on first toggle, and the extra
+detail buys nothing: these are dashed reference lines answering "which
+country is that?", not something anyone inspects closely. The coastline
+underneath is looked at directly, so it stays fine.
 
 ### Two things that will bite you if you edit the map
 

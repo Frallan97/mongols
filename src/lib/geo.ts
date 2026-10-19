@@ -1,5 +1,5 @@
 import { geoAzimuthalEqualArea, geoPath, geoGraticule10 } from 'd3-geo';
-import { feature } from 'topojson-client';
+import { feature, mesh } from 'topojson-client';
 import landTopo from 'world-atlas/land-50m.json';
 import type { Topology } from 'topojson-specification';
 import type { FeatureCollection, MultiPolygon, Polygon } from 'geojson';
@@ -81,6 +81,47 @@ const landFc = feature(
 
 /** All land as one SVG path string — used for the basemap and as the clip. */
 export const LAND_PATH: string = path(landFc) ?? '';
+
+/**
+ * Present-day international borders, loaded on demand.
+ *
+ * Two decisions here, both about weight. It is a dynamic import, so the
+ * default page load is unchanged by this feature existing — most visitors
+ * never turn the overlay on. And it uses the 110m topology where the
+ * coastline uses 50m: at 50m this chunk is 243KB gzipped, which is a visible
+ * hitch on first toggle, and the extra detail buys nothing. These are dashed
+ * reference lines answering "which country is that?" — nobody is inspecting
+ * the shape of a fjord through them, whereas the coastline underneath is
+ * looked at directly and stays at the finer resolution.
+ *
+ * `mesh` with an `a !== b` filter returns only the arcs shared by two
+ * different countries — the interior borders. Taking the outline of each
+ * country instead would redraw the entire coastline a second time underneath
+ * the one already there, doubling the stroke on every shore and drawing each
+ * land border twice.
+ *
+ * The result is memoised: the projection never changes, so the path string
+ * is computed once per session no matter how often the toggle is flipped.
+ */
+let bordersPromise: Promise<string> | null = null;
+
+export function loadCountryBorders(): Promise<string> {
+  bordersPromise ??= import('world-atlas/countries-110m.json').then((mod) => {
+    const topo = (mod.default ?? mod) as unknown as Topology;
+    return (
+      path(
+        // The bundled types declare geometry properties as possibly null,
+        // which does not satisfy `mesh`'s stricter parameter; data is fine.
+        mesh(
+          topo,
+          topo.objects.countries as Parameters<typeof mesh>[1],
+          (a, b) => a !== b,
+        ),
+      ) ?? ''
+    );
+  });
+  return bordersPromise;
+}
 
 export const GRATICULE_PATH: string = path(geoGraticule10()) ?? '';
 

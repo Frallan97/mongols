@@ -188,8 +188,18 @@ body::before {
     d 600ms ease;
 }
 
+/*
+ * The modern-borders overlay fades rather than snapping, but faster than the
+ * territory does — it is a reference layer responding to a direct click, and
+ * the 600ms the realms use reads as lag when you flipped a switch yourself.
+ */
+.map-fade {
+  transition: opacity 250ms ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .realm-shape,
+  .map-fade,
   .year-slider::-webkit-slider-thumb {
     transition: none;
   }

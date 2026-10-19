@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { EventNote } from './components/EventNote';
 import { LeaderPanel } from './components/LeaderPanel';
+import { MapToggle } from './components/MapToggle';
 import { MapView } from './components/MapView';
 import { Sources } from './components/Sources';
 import { Timeline } from './components/Timeline';
@@ -27,18 +28,24 @@ function yearFromHash(): number {
   return m ? clampYear(Number(m[1])) : START_YEAR;
 }
 
+/** Read `&modern=1`, so a link can carry the overlay state too. */
+function modernFromHash(): boolean {
+  return /(?:^|[#&])modern=1/.test(window.location.hash);
+}
+
 export default function App() {
   const [year, setYear] = useState(yearFromHash);
   const [playing, setPlaying] = useState(false);
+  const [modernBorders, setModernBorders] = useState(modernFromHash);
 
   // Keep the URL in step with the year, without pushing 88 history entries
   // during playback — replaceState means Back still leaves the page.
   useEffect(() => {
-    const hash = `#y=${year}`;
+    const hash = `#y=${year}` + (modernBorders ? '&modern=1' : '');
     if (window.location.hash !== hash) {
       window.history.replaceState(null, '', hash);
     }
-  }, [year]);
+  }, [year, modernBorders]);
 
   // Advance one year at a time. A chain of timeouts rather than an interval,
   // so the per-year delay can vary with whether the year has something to say.
@@ -105,14 +112,19 @@ export default function App() {
 
       <main className="flex flex-col gap-6 lg:flex-row">
         <div className="min-w-0 flex-1">
+          <div className="mb-1.5 flex justify-end">
+            <MapToggle checked={modernBorders} onChange={setModernBorders} />
+          </div>
           <div className="overflow-hidden rounded-sm border border-rule bg-sea shadow-[0_1px_0_rgb(255_255_255/0.5)_inset,0_2px_8px_rgb(59_47_36/0.1)]">
-            <MapView year={year} />
+            <MapView year={year} showModernBorders={modernBorders} />
           </div>
           <p className="mt-2 text-[0.7rem] leading-snug text-ink-faint">
             Borders are approximate and contested. The empire controlled
             armies, cities, roads and tribute rather than a surveyed frontier;
             vassal states such as Goryeo and the Rus principalities are drawn
             the same as directly ruled land.
+            {modernBorders &&
+              ' Dashed lines are present-day international borders, shown for orientation only — none of them existed.'}
           </p>
         </div>
 

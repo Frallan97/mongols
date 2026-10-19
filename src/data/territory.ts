@@ -3,9 +3,10 @@ import type { Realm, TerritorySnapshot } from './types';
 /**
  * APPROXIMATE EXTENT. Read this before trusting a line on the map.
  *
- * These rings are hand-authored from the extents shown in standard reference
- * atlases. They are not survey data and there is no underlying source that
- * could make them so: the Mongol empire controlled armies, roads, cities and
+ * These rings are hand-authored, drawn to match the extents that standard
+ * reference atlases show for each phase. They are an interpretation of those
+ * maps, not a tracing of any one of them, and emphatically not survey data —
+ * there is no underlying source that could make them so: the Mongol empire controlled armies, roads, cities and
  * tribute, not a cartographic boundary, and historians disagree about where
  * its edges ran in any given year. Three specific kinds of lie are baked in:
  *

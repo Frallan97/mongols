@@ -12,7 +12,10 @@ Live at <https://mongols.vibeoholic.com>.
 - **Four khanates after 1260.** Before the split the leader panel shows one
   Great Khan; after it, all four concurrent rulers, colour-matched to the map.
 - **~35 turning points**, one sentence each, pinned to the year they happened.
-- **No backend.** Three hand-authored TypeScript datasets and a bundled
+- **Every claim is sourced.** Each ruler and each event links to its own
+  article; the standard scholarship behind the dates is credited under
+  *Sources* at the foot of the page.
+- **No backend.** Four hand-authored TypeScript datasets and a bundled
   coastline. Nothing is fetched at runtime.
 
 Deep-link to a year with the URL fragment: `/#y=1241`.
@@ -35,6 +38,35 @@ What the app *can* guarantee is internal consistency, and that is what
 rather than pixels. Those tests caught three real errors that looked fine on
 screen — the Ilkhanate annexing Arabia, Kiev falling outside the Golden Horde,
 and Konya outside Mongol Anatolia. Edit a ring, run `npm test`.
+
+## Sources
+
+Every ruler (22) and every event (35) carries a `source` with a verified URL,
+living next to the data it supports in `src/data/rulers.ts` and
+`src/data/events.ts`. The bibliography — Morgan, Jackson, Atwood, plus the
+*Secret History* and Rashid al-Din — is in `src/data/sources.ts` and renders
+in the collapsed *Sources* panel under the timeline.
+
+Two different things are being credited, and the app does not blur them:
+
+- **The per-item links go to encyclopedia articles.** They are entry points
+  for *checking* a claim — stable, free to read, and carrying their own
+  footnotes into the literature. They are not what the prose was written
+  from.
+- **The works in `sources.ts` are the scholarship the dates follow.** Where
+  they disagree with each other — common for khanate accessions, which are
+  dated variously from election, enthronement, or a predecessor's death —
+  the more widely cited year is used and the dispute is not flagged.
+
+```bash
+npm run check:links    # fetches all 56 distinct URLs, fails on any non-200
+```
+
+That script is deliberately **not** in CI: it talks to the network, so a
+Wikipedia blip could otherwise block a deploy for reasons unrelated to the
+change. Link rot is real but slow — run it occasionally. The unit tests do
+check link *shape* (absolute, https, percent-encoded, non-empty title), so a
+malformed URL can't ship either way.
 
 ## Stack
 

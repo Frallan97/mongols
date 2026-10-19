@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { EventNote } from './components/EventNote';
 import { LeaderPanel } from './components/LeaderPanel';
 import { MapView } from './components/MapView';
+import { Sources } from './components/Sources';
 import { Timeline } from './components/Timeline';
 import { EVENT_YEARS } from './data/events';
 import { END_YEAR, START_YEAR } from './data/territory';
@@ -133,8 +134,9 @@ export default function App() {
         <p className="mt-3 text-[0.7rem] text-ink-faint">
           Drag to scrub, or press play. Arrow keys step a year; space toggles
           playback. Ticks mark the years the map changes; dots mark the years
-          with a note.
+          with a note. Every ruler and event links to its source.
         </p>
+        <Sources />
       </footer>
     </div>
   );

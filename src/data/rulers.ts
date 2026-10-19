@@ -1,11 +1,14 @@
 import type { Ruler } from './types';
 
 /**
- * Reign dates follow the conventional dating used in standard surveys
- * (Morgan, *The Mongols*; Jackson, *The Mongols and the West*; Atwood,
- * *Encyclopedia of Mongolia and the Mongol Empire*). Where sources disagree
- * by a year — which is common for the khanates, whose accessions are dated
- * from different events — the more widely cited year is used.
+ * Reign dates follow the conventional dating used in the standard surveys
+ * listed in `sources.ts` (Morgan, Jackson, Atwood). Where those disagree by a
+ * year — common for the khanates, whose accessions are dated variously from
+ * election, enthronement, or the predecessor's death — the more widely cited
+ * year is used, and the app does not flag the dispute.
+ *
+ * Each ruler's `source` links to their encyclopedia article: an entry point
+ * for a reader checking a claim, not the work this was written from.
  *
  * Regencies are included rather than smoothed over. The gaps between khans
  * were not administrative footnotes: the five years between Ögedei's death
@@ -18,6 +21,10 @@ export const RULERS: Ruler[] = [
   // ---------------------------------------------------------------------
   {
     id: 'genghis',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Genghis_Khan',
+      title: 'Genghis Khan',
+    },
     name: 'Genghis Khan',
     realm: 'mongol',
     from: 1206,
@@ -26,6 +33,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'tolui-regency',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Tolui',
+      title: 'Tolui',
+    },
     name: 'Regency of Tolui',
     realm: 'mongol',
     from: 1227,
@@ -35,6 +46,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'ogedei',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/%C3%96gedei_Khan',
+      title: 'Ögedei Khan',
+    },
     name: 'Ögedei Khan',
     realm: 'mongol',
     from: 1229,
@@ -43,6 +58,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'toregene-regency',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/T%C3%B6regene_Khatun',
+      title: 'Töregene Khatun',
+    },
     name: 'Regency of Töregene',
     realm: 'mongol',
     from: 1241,
@@ -52,6 +71,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'guyuk',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/G%C3%BCy%C3%BCk_Khan',
+      title: 'Güyük Khan',
+    },
     name: 'Güyük Khan',
     realm: 'mongol',
     from: 1246,
@@ -60,6 +83,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'oghul-regency',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Oghul_Qaimish',
+      title: 'Oghul Qaimish',
+    },
     name: 'Regency of Oghul Qaimish',
     realm: 'mongol',
     from: 1248,
@@ -69,6 +96,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'mongke',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/M%C3%B6ngke_Khan',
+      title: 'Möngke Khan',
+    },
     name: 'Möngke Khan',
     realm: 'mongol',
     from: 1251,
@@ -81,6 +112,10 @@ export const RULERS: Ruler[] = [
   // ---------------------------------------------------------------------
   {
     id: 'kublai',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Kublai_Khan',
+      title: 'Kublai Khan',
+    },
     name: 'Kublai Khan',
     realm: 'yuan',
     from: 1260,
@@ -93,6 +128,10 @@ export const RULERS: Ruler[] = [
   // ---------------------------------------------------------------------
   {
     id: 'berke',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Berke',
+      title: 'Berke',
+    },
     name: 'Berke Khan',
     realm: 'golden-horde',
     from: 1257,
@@ -101,6 +140,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'mengu-timur',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mengu-Timur',
+      title: 'Mengu-Timur',
+    },
     name: 'Mengu-Timur',
     realm: 'golden-horde',
     from: 1266,
@@ -109,6 +152,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'tode-mongke',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Tode_Mongke',
+      title: 'Töde Möngke',
+    },
     name: 'Töde Möngke',
     realm: 'golden-horde',
     from: 1280,
@@ -117,6 +164,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'talabuga',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Talabuga',
+      title: 'Talabuga',
+    },
     name: 'Talabuga',
     realm: 'golden-horde',
     from: 1287,
@@ -125,6 +176,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'toqta',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Toqta',
+      title: 'Toqta',
+    },
     name: 'Toqta',
     realm: 'golden-horde',
     from: 1291,
@@ -137,6 +192,10 @@ export const RULERS: Ruler[] = [
   // ---------------------------------------------------------------------
   {
     id: 'hulegu',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Hulegu_Khan',
+      title: 'Hülegü Khan',
+    },
     name: 'Hülegü Khan',
     realm: 'ilkhanate',
     from: 1256,
@@ -145,6 +204,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'abaqa',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Abaqa_Khan',
+      title: 'Abaqa Khan',
+    },
     name: 'Abaqa Khan',
     realm: 'ilkhanate',
     from: 1265,
@@ -153,6 +216,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'tekuder',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Tekuder',
+      title: 'Tekuder',
+    },
     name: 'Tekuder (Ahmad)',
     realm: 'ilkhanate',
     from: 1282,
@@ -161,6 +228,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'arghun',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Arghun',
+      title: 'Arghun',
+    },
     name: 'Arghun Khan',
     realm: 'ilkhanate',
     from: 1284,
@@ -169,6 +240,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'gaykhatu',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Gaykhatu',
+      title: 'Gaykhatu',
+    },
     name: 'Gaykhatu',
     realm: 'ilkhanate',
     from: 1291,
@@ -181,6 +256,10 @@ export const RULERS: Ruler[] = [
   // ---------------------------------------------------------------------
   {
     id: 'alghu',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Alghu',
+      title: 'Alghu',
+    },
     name: 'Alghu',
     realm: 'chagatai',
     from: 1260,
@@ -189,6 +268,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'mubarak-baraq',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Ghiyas-ud-din_Baraq',
+      title: 'Ghiyas-ud-din Baraq',
+    },
     name: 'Baraq',
     realm: 'chagatai',
     from: 1266,
@@ -197,6 +280,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'chagatai-contested',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Chagatai_Khanate',
+      title: 'Chagatai Khanate',
+    },
     name: 'Contested succession',
     realm: 'chagatai',
     from: 1271,
@@ -206,6 +293,10 @@ export const RULERS: Ruler[] = [
   },
   {
     id: 'duwa',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Duwa',
+      title: 'Duwa',
+    },
     name: 'Duwa',
     realm: 'chagatai',
     from: 1282,

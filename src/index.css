@@ -151,6 +151,36 @@ body::before {
   box-shadow: 0 0 0 1px var(--color-ink-soft), 0 0 0 4px rgb(59 47 36 / 0.25);
 }
 
+/*
+ * Source links.
+ *
+ * Underlined always rather than only on hover: these are the affordance that
+ * makes every claim on the page checkable, and an underline that only appears
+ * under the cursor is one most readers never discover. Kept faint and
+ * ink-coloured so a panel of them still reads as prose rather than as a link
+ * farm, and thickened on hover so the target is unambiguous.
+ */
+.src-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--color-ink-faint);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 120ms ease;
+}
+
+.src-link:hover,
+.src-link:focus-visible {
+  text-decoration-color: var(--color-mongol);
+  text-decoration-thickness: 2px;
+}
+
+.src-link:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
 /* Territory cross-fade. Honours the OS reduced-motion setting. */
 .realm-shape {
   transition:

@@ -1,3 +1,4 @@
+import { SourceLink } from './SourceLink';
 import { rulersInYear } from '../data/rulers';
 import { REALM_LABEL, isDivided } from '../data/territory';
 import type { Realm } from '../data/types';
@@ -55,7 +56,9 @@ export function LeaderPanel({ year }: Props) {
               <div
                 className={`text-[1.05rem] leading-snug ${r.interregnum ? 'italic text-ink-soft' : ''}`}
               >
-                {r.name}
+                <SourceLink source={r.source} describes={r.name}>
+                  {r.name}
+                </SourceLink>
               </div>
               <div className="text-xs text-ink-faint tabular-nums">
                 r. {r.from}–{r.to}

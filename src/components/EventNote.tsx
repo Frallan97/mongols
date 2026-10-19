@@ -1,3 +1,4 @@
+import { SourceLink } from './SourceLink';
 import { EVENTS, eventsInYear } from '../data/events';
 import type { HistoricalEvent } from '../data/types';
 
@@ -36,7 +37,10 @@ export function EventNote({ year }: Props) {
         <article className="opacity-65">
           <h3 className="text-[0.95rem] leading-snug">
             <span className="tabular-nums text-ink-faint">{previous.year}</span>{' '}
-            · {previous.title}
+            ·{' '}
+            <SourceLink source={previous.source} describes={previous.title}>
+              {previous.title}
+            </SourceLink>
           </h3>
           <p className="mt-1 text-[0.85rem] leading-relaxed text-ink-soft">
             {previous.text}
@@ -54,7 +58,11 @@ export function EventNote({ year }: Props) {
       <div className="space-y-4">
         {current.map((e) => (
           <article key={e.title}>
-            <h3 className="text-[1.05rem] leading-snug">{e.title}</h3>
+            <h3 className="text-[1.05rem] leading-snug">
+              <SourceLink source={e.source} describes={e.title}>
+                {e.title}
+              </SourceLink>
+            </h3>
             <p className="mt-1 text-[0.88rem] leading-relaxed text-ink-soft">
               {e.text}
             </p>

@@ -42,11 +42,32 @@ export interface RealmExtent {
   rings: [number, number][][];
 }
 
+/**
+ * Where to go to check a claim.
+ *
+ * Every ruler and every event carries one. These are not the sources the
+ * prose was written from — that is the standard literature listed in
+ * `sources.ts` — they are the shortest route from a sentence on this page to
+ * somewhere a reader can start verifying it, which for a general audience is
+ * the relevant encyclopedia article and its own reference list.
+ *
+ * `npm run check:links` fetches every one of them and fails on anything that
+ * is not a 200, so "working links" stays a fact rather than a claim made once
+ * at authoring time.
+ */
+export interface Source {
+  /** Absolute https URL. Percent-encoded; several titles are non-ASCII. */
+  url: string;
+  /** The article title, shown as the link's accessible name. */
+  title: string;
+}
+
 /** A person holding a throne over a continuous span. */
 export interface Ruler {
   id: string;
   name: string;
   realm: Realm;
+  source: Source;
   /** Reign start. Elections after a khan's death leave real gaps; see `interregnum`. */
   from: number;
   /** Reign end, inclusive. */
@@ -66,4 +87,5 @@ export interface HistoricalEvent {
   title: string;
   /** Deliberately one sentence. The slider is the medium; this is a caption. */
   text: string;
+  source: Source;
 }

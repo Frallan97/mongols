@@ -14,176 +14,316 @@ export const EVENTS: HistoricalEvent[] = [
   {
     year: 1206,
     title: 'Proclaimed Genghis Khan',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Genghis_Khan',
+      title: 'Genghis Khan',
+    },
     text: 'A kurultai on the Onon river acclaims Temüjin as ruler of all the tribes of the felt-walled tents, ending twenty years of steppe civil war.',
   },
   {
     year: 1209,
     title: 'Western Xia submits',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_conquest_of_Western_Xia',
+      title: 'Mongol conquest of Western Xia',
+    },
     text: 'The Tangut kingdom becomes the first settled state to accept Mongol overlordship, giving Genghis a tributary and a route south.',
   },
   {
     year: 1211,
     title: 'War with Jin China begins',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_conquest_of_the_Jin_dynasty',
+      title: 'Mongol conquest of the Jin dynasty',
+    },
     text: 'The Mongols cross the Gobi against the Jurchen Jin, beginning a campaign that will take twenty-three years to finish.',
   },
   {
     year: 1215,
     title: 'Zhongdu falls',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Sieges_of_Zhongdu',
+      title: 'Sieges of Zhongdu',
+    },
     text: 'The Jin capital — on the site of modern Beijing — is stormed and burned after a year-long siege.',
   },
   {
     year: 1218,
     title: 'Qara Khitai absorbed',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Qara_Khitai',
+      title: 'Qara Khitai',
+    },
     text: 'Jebe takes the Qara Khitai empire almost without a battle, putting the Mongols on the frontier of Khwarezm.',
   },
   {
     year: 1219,
     title: 'The Otrar massacre',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_invasion_of_the_Khwarazmian_Empire',
+      title: 'Mongol invasion of the Khwarazmian Empire',
+    },
     text: 'Khwarezm executes a Mongol trade caravan and then the envoys sent to protest, and Genghis turns his whole army west.',
   },
   {
     year: 1220,
     title: 'Bukhara and Samarkand',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Siege_of_Bukhara',
+      title: 'Siege of Bukhara',
+    },
     text: 'The great cities of Transoxiana fall within months of each other, and the Khwarezmian state collapses faster than it can be defended.',
   },
   {
     year: 1221,
     title: 'The Khurasan massacres',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_invasion_of_Khorasan',
+      title: 'Mongol invasion of Khorasan',
+    },
     text: 'Merv, Nishapur and Urgench are systematically destroyed — the atrocity that fixed the Mongol reputation in the Islamic world for centuries.',
   },
   {
     year: 1223,
     title: 'Battle of the Kalka River',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Battle_of_the_Kalka_River',
+      title: 'Battle of the Kalka River',
+    },
     text: 'A reconnaissance force under Jebe and Subutai annihilates a combined Rus and Cuman army, then rides home.',
   },
   {
     year: 1227,
     title: 'Death of Genghis Khan',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Genghis_Khan',
+      title: 'Genghis Khan',
+    },
     text: 'Genghis dies on campaign against the Tanguts, who are exterminated as his funeral rite.',
   },
   {
     year: 1229,
     title: 'Ögedei elected',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/%C3%96gedei_Khan',
+      title: 'Ögedei Khan',
+    },
     text: 'A kurultai confirms Genghis’s third son as Great Khan, and the empire proves it can survive its founder.',
   },
   {
     year: 1234,
     title: 'The Jin destroyed',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_conquest_of_the_Jin_dynasty',
+      title: 'Mongol conquest of the Jin dynasty',
+    },
     text: 'The last Jin emperor dies at Caizhou and northern China passes entirely into Mongol hands.',
   },
   {
     year: 1235,
     title: 'Karakorum walled',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Karakorum',
+      title: 'Karakorum',
+    },
     text: 'Ögedei gives the empire a fixed capital and a bureaucracy, and a kurultai there resolves to invade the west.',
   },
   {
     year: 1236,
     title: "Batu's western campaign opens",
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_invasion_of_Volga_Bulgaria',
+      title: 'Mongol invasion of Volga Bulgaria',
+    },
     text: 'Volga Bulgaria is destroyed and the Kipchak steppe overrun, opening the road into Europe.',
   },
   {
     year: 1237,
     title: 'The Rus principalities fall',
+    source: {
+      url: "https://en.wikipedia.org/wiki/Mongol_invasion_of_Kievan_Rus'",
+      title: "Mongol invasion of Kievan Rus'",
+    },
     text: 'Ryazan is destroyed in a winter campaign and the Rus princes are subjugated one by one over the next three years.',
   },
   {
     year: 1240,
     title: 'Kiev sacked',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Siege_of_Kiev_(1240)',
+      title: 'Siege of Kiev (1240)',
+    },
     text: 'The mother of Rus cities is taken and levelled, and Rus enters two centuries under the Horde.',
   },
   {
     year: 1241,
     title: 'Legnica and Mohi',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Battle_of_Legnica',
+      title: 'Battle of Legnica',
+    },
     text: 'Mongol armies destroy a Polish-German force and the Hungarian royal army within two days of each other, and Europe has no answer.',
   },
   {
     year: 1241,
     title: "Ögedei's death saves Europe",
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_invasion_of_Europe',
+      title: 'Mongol invasion of Europe',
+    },
     text: 'News of the Great Khan’s death reaches the Danube and the princes turn back east for the succession — the high-water mark in the west.',
   },
   {
     year: 1246,
     title: 'Güyük elected',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/G%C3%BCy%C3%BCk_Khan',
+      title: 'Güyük Khan',
+    },
     text: 'After five years of regency a kurultai chooses Güyük, watched by the first papal envoy ever sent to the Mongols.',
   },
   {
     year: 1251,
     title: 'The Toluid coup',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/M%C3%B6ngke_Khan',
+      title: 'Möngke Khan',
+    },
     text: 'Möngke takes the throne with Batu’s backing and purges the house of Ögedei, permanently narrowing who may rule.',
   },
   {
     year: 1256,
     title: 'Alamut taken',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Siege_of_Alamut_(1256)',
+      title: 'Siege of Alamut (1256)',
+    },
     text: 'Hülegü destroys the Nizari Ismaili strongholds in the Elburz, ending the Assassins as a power.',
   },
   {
     year: 1258,
     title: 'The sack of Baghdad',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Siege_of_Baghdad',
+      title: 'Siege of Baghdad',
+    },
     text: 'The Abbasid Caliphate — five centuries old — is extinguished and the last caliph executed.',
   },
   {
     year: 1259,
     title: 'Möngke dies in Sichuan',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/M%C3%B6ngke_Khan',
+      title: 'Möngke Khan',
+    },
     text: 'The Great Khan dies on campaign against the Song, and the empire has no agreed way to replace him.',
   },
   {
     year: 1260,
     title: 'Ain Jalut',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Battle_of_Ain_Jalut',
+      title: 'Battle of Ain Jalut',
+    },
     text: 'A Mamluk army defeats the Mongols in Galilee — the first strategic defeat they do not reverse, fixing the empire’s limit in the southwest.',
   },
   {
     year: 1260,
     title: 'Two Great Khans proclaimed',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Toluid_Civil_War',
+      title: 'Toluid Civil War',
+    },
     text: 'Kublai and Ariq Böke are each elected by rival kurultais, and the Toluid Civil War begins.',
   },
   {
     year: 1264,
     title: 'The empire divides for good',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Division_of_the_Mongol_Empire',
+      title: 'Division of the Mongol Empire',
+    },
     text: 'Ariq Böke surrenders, but by now the four uluses answer to themselves and no Great Khan rules the whole again.',
   },
   {
     year: 1266,
     title: 'Berke-Hülegü war',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Berke%E2%80%93Hulegu_war',
+      title: 'Berke–Hulegu war',
+    },
     text: 'The Golden Horde and the Ilkhanate fight openly over the Caucasus — Mongol against Mongol, with the Horde allied to the Mamluks.',
   },
   {
     year: 1271,
     title: 'The Yuan dynasty declared',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Yuan_dynasty',
+      title: 'Yuan dynasty',
+    },
     text: 'Kublai proclaims a Chinese dynasty with himself as emperor, governing from Dadu rather than the steppe.',
   },
   {
     year: 1274,
     title: 'First invasion of Japan',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_invasions_of_Japan',
+      title: 'Mongol invasions of Japan',
+    },
     text: 'A seaborne force lands at Hakata Bay, withdraws after a storm, and reveals the limit of Mongol power at sea.',
   },
   {
     year: 1276,
     title: 'Hangzhou surrenders',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_conquest_of_the_Song_dynasty',
+      title: 'Mongol conquest of the Song dynasty',
+    },
     text: 'The Song capital is handed over intact and the richest state on earth passes to the Yuan.',
   },
   {
     year: 1279,
     title: 'Yamen — the Song extinguished',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Battle_of_Yamen',
+      title: 'Battle of Yamen',
+    },
     text: 'The last Song loyalists are destroyed at sea and China is unified under foreign rule for the first time.',
   },
   {
     year: 1281,
     title: 'The kamikaze',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_invasions_of_Japan',
+      title: 'Mongol invasions of Japan',
+    },
     text: 'A second and far larger invasion fleet is wrecked by a typhoon off Kyushu, and Japan is never attempted again.',
   },
   {
     year: 1285,
     title: 'Repulsed in Vietnam',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_invasions_of_Vietnam',
+      title: 'Mongol invasions of Vietnam',
+    },
     text: 'Đại Việt defeats a Yuan invasion in the field, and the jungle frontier proves as hard a limit as the sea.',
   },
   {
     year: 1293,
     title: 'The Java expedition fails',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Mongol_invasion_of_Java',
+      title: 'Mongol invasion of Java',
+    },
     text: 'A fleet sent to punish Java is outmanoeuvred and driven off — the furthest the Mongols ever projected force.',
   },
   {
     year: 1294,
     title: 'Death of Kublai Khan',
+    source: {
+      url: 'https://en.wikipedia.org/wiki/Kublai_Khan',
+      title: 'Kublai Khan',
+    },
     text: 'The last Great Khan whose title meant anything outside his own realm dies at Dadu, and four separate empires remain.',
   },
 ];

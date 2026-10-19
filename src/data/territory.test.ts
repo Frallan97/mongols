@@ -2,8 +2,9 @@ import { geoContains } from 'd3-geo';
 import { describe, expect, it } from 'vitest';
 import type { Polygon } from 'geojson';
 import { SNAPSHOTS, snapshotForYear } from './territory';
-import { rulersInYear } from './rulers';
+import { RULERS, rulersInYear } from './rulers';
 import { EVENTS } from './events';
+import { DATA_CREDITS, PRIMARY, SECONDARY } from './sources';
 import type { Realm } from './types';
 
 /*
@@ -219,5 +220,51 @@ describe('dataset integrity', () => {
   it('shows four thrones once divided and one before', () => {
     expect(rulersInYear(1230)).toHaveLength(1);
     expect(rulersInYear(1290)).toHaveLength(4);
+  });
+});
+
+/*
+ * These check the *shape* of every source link, not that it resolves —
+ * reaching Wikipedia from a unit test would make the suite fail whenever the
+ * network does. `npm run check:links` does the fetching; this makes sure
+ * nothing ships with a missing, relative or malformed URL in the first place.
+ */
+describe('sources', () => {
+  const works = [...SECONDARY, ...PRIMARY];
+  const everySource = [
+    ...RULERS.map((r) => [`ruler ${r.id}`, r.source] as const),
+    ...EVENTS.map((e) => [`event ${e.year} ${e.title}`, e.source] as const),
+    ...works.map((w) => [`work ${w.title}`, w.source] as const),
+    ...DATA_CREDITS.map((c) => [`credit ${c.title}`, c] as const),
+  ];
+
+  it('gives every ruler a source', () => {
+    for (const r of RULERS) expect(r.source?.url, r.id).toBeTruthy();
+  });
+
+  it('gives every event a source', () => {
+    for (const e of EVENTS) expect(e.source?.url, `${e.year} ${e.title}`).toBeTruthy();
+  });
+
+  it('uses absolute https URLs everywhere', () => {
+    for (const [where, s] of everySource) {
+      expect(s.url.startsWith('https://'), `${where}: ${s.url}`).toBe(true);
+      expect(() => new URL(s.url), where).not.toThrow();
+    }
+  });
+
+  it('percent-encodes non-ASCII titles rather than embedding raw characters', () => {
+    // Ögedei, Güyük, Möngke and the Berke–Hulegu en-dash all need escaping;
+    // a raw character here means someone hand-edited a URL.
+    for (const [where, s] of everySource) {
+      // eslint-disable-next-line no-control-regex
+      expect(/[^\x00-\x7F]/.test(s.url), `${where}: ${s.url}`).toBe(false);
+    }
+  });
+
+  it('gives every source a non-empty human-readable title', () => {
+    for (const [where, s] of everySource) {
+      expect(s.title.trim().length, where).toBeGreaterThan(0);
+    }
   });
 });

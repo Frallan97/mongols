@@ -18,6 +18,17 @@ export function LeaderPanel({ year }: Props) {
   const rulers = rulersInYear(year);
   const divided = isDivided(year);
 
+  /*
+   * Hülegü takes Persia in 1256 and Berke the Horde in 1257, three years
+   * before the empire formally breaks apart — so there is a window where
+   * three names are listed under one undivided map. Realm names are keyed to
+   * that, not to the split: any time more than one throne is shown, each one
+   * has to say which throne it is. Keying them to `divided` left 1256-1259
+   * showing three unlabelled rulers and a colour swatch that matched nothing
+   * on the map.
+   */
+  const showRealms = rulers.length > 1;
+
   return (
     <section aria-labelledby="who-ruled">
       <h2 id="who-ruled" className="label mb-2 text-xs">
@@ -33,11 +44,10 @@ export function LeaderPanel({ year }: Props) {
             />
             <div className="min-w-0">
               {/*
-                The realm name is only worth printing once the empire is
-                divided. Before 1260 there is one throne and labelling it
-                "Mongol Empire" above every khan is noise.
+                Skipped when there is only one throne: labelling a lone khan
+                "Mongol Empire" is noise.
               */}
-              {divided && (
+              {showRealms && (
                 <div className="label text-[0.65rem] leading-tight">
                   {REALM_LABEL[r.realm]}
                 </div>
@@ -58,11 +68,18 @@ export function LeaderPanel({ year }: Props) {
         ))}
       </ul>
 
-      {divided && (
+      {divided ? (
         <p className="mt-4 border-t border-rule/60 pt-3 text-[0.78rem] leading-snug text-ink-faint">
           After 1260 the Great Khan is nominally senior but holds no authority
           over the other three uluses. They fight each other.
         </p>
+      ) : (
+        showRealms && (
+          <p className="mt-4 border-t border-rule/60 pt-3 text-[0.78rem] leading-snug text-ink-faint">
+            These western rulers still answer to the Great Khan — the uluses
+            are commands, not yet kingdoms. That ends in 1260.
+          </p>
+        )
       )}
     </section>
   );

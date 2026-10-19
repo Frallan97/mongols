@@ -1,0 +1,166 @@
+@import 'tailwindcss';
+
+/*
+ * Parchment palette. Historical-atlas styling tips into pastiche the moment
+ * it reaches for fake torn edges and drop-shadowed scrolls, so the restraint
+ * here is deliberate: aged paper, one serif, ink-brown text, and earth
+ * pigments for the realms. No textures beyond a very low-contrast grain, no
+ * faux-aged vignette, no decorative compass rose.
+ *
+ * The realm colours are pigments a 13th-century mapmaker could actually have
+ * ground — vermilion, verdigris, indigo, orpiment — which keeps the four
+ * khanates distinguishable without looking like a modern category palette
+ * dropped on beige.
+ */
+@theme {
+  --color-paper: #f2e8d5;
+  --color-paper-deep: #e8dbc0;
+  --color-paper-edge: #d9c9a8;
+  --color-ink: #3b2f24;
+  --color-ink-soft: #6b5947;
+  --color-ink-faint: #a08f78;
+  --color-rule: #c3b091;
+
+  /*
+   * Land and sea need real separation. An earlier pass had them four points
+   * apart on the same tan and the coastline vanished — the map read as one
+   * flat sheet. Sea is pulled cool and slightly grey, which is enough to
+   * register as water next to warm paper without turning into a modern
+   * blue-on-white web map.
+   */
+  --color-sea: #c5cfd0;
+  --color-land: #f0e6d0;
+
+  /* Realms */
+  --color-mongol: #9c3a28;
+  --color-yuan: #8a2f22;
+  --color-horde: #b07d2b;
+  --color-ilkhan: #3f6b5c;
+  --color-chagatai: #4a5b84;
+
+  --font-serif-display: 'Iowan Old Style', 'Palatino Linotype', Palatino,
+    'Book Antiqua', 'Georgia', serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-serif-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Paper grain. Two very low-opacity repeating gradients at odd angles read as
+ * fibre rather than as a pattern. Kept on the body so it sits under the map
+ * without tinting the territory fills.
+ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background-image:
+    repeating-linear-gradient(
+      37deg,
+      rgb(0 0 0 / 0.012) 0px,
+      rgb(0 0 0 / 0.012) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      113deg,
+      rgb(0 0 0 / 0.01) 0px,
+      rgb(0 0 0 / 0.01) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+/* Small-caps label used for section headings and realm names. */
+.label {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  color: var(--color-ink-soft);
+}
+
+/*
+ * Year slider. Styled from scratch because the native track is the one
+ * element that would give the whole page away as a web form.
+ */
+.year-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2.25rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.year-slider:focus {
+  outline: none;
+}
+
+.year-slider::-webkit-slider-runnable-track {
+  height: 3px;
+  background: var(--color-rule);
+  border-radius: 2px;
+}
+
+.year-slider::-moz-range-track {
+  height: 3px;
+  background: var(--color-rule);
+  border-radius: 2px;
+}
+
+.year-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: calc((1.25rem - 3px) / -2);
+  border-radius: 9999px;
+  background: var(--color-ink);
+  border: 3px solid var(--color-paper);
+  box-shadow: 0 0 0 1px var(--color-ink-soft);
+  transition: transform 120ms ease;
+}
+
+.year-slider::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  background: var(--color-ink);
+  border: 3px solid var(--color-paper);
+  box-shadow: 0 0 0 1px var(--color-ink-soft);
+}
+
+.year-slider:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.year-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 1px var(--color-ink-soft), 0 0 0 4px rgb(59 47 36 / 0.25);
+}
+
+/* Territory cross-fade. Honours the OS reduced-motion setting. */
+.realm-shape {
+  transition:
+    opacity 600ms ease,
+    d 600ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .realm-shape,
+  .year-slider::-webkit-slider-thumb {
+    transition: none;
+  }
+}

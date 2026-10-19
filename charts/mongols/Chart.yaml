@@ -1,0 +1,13 @@
+apiVersion: v2
+name: mongols
+description: Interactive map of the Mongol empire's expansion, 1206-1294 — a static React SPA served by nginx
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - history
+  - map
+  - visualisation
+  - mongol
+maintainers:
+  - name: frallan97

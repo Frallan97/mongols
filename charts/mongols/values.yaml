@@ -53,5 +53,14 @@ ingress:
     enabled: true
     secretName: mongols-tls
 
-imagePullSecrets:
-  - name: ghcr-pull-secret
+# No imagePullSecrets on purpose.
+#
+# The other apps on this cluster each carry a sealed `ghcr-pull-secret`, and
+# those credentials expire independently of each other, which has broken
+# deploys before. This repo is public, so the GHCR package inherited public
+# visibility and the image pulls anonymously — verified against the registry,
+# not assumed. That removes a credential that would otherwise need rotating.
+#
+# If the package is ever flipped to private, pods will fail with
+# ImagePullBackOff and a sealed pull secret has to be added back here.
+imagePullSecrets: []
